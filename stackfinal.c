@@ -5,7 +5,7 @@
 typedef struct st
 {
     int tos;
-    int size;
+    int usize;
     int *arr;
 }Stack;
 
@@ -26,7 +26,7 @@ void init(Stack *bucket,int usize);
 }
 
 //DEFINING ISFULL FUNCTION
-int isfull(Stack bucket)
+int isfull(Stack *bucket)
 {
     if(bucket.tos == bucket.size-1)//IF TOP OF STACK IS POINTING TO THE UPPERMOST ELEMENT OF THE STACK
     return 1;
@@ -35,7 +35,7 @@ int isfull(Stack bucket)
 }
 
 // DEFINING ISEMPTY FUNCTION
-int isempty(Stack bucket)
+int isempty(Stack *bucket)
 {
     if(bucket.tos == -1)//IF TOS IS POINTING TO THE LOWERMOST INDEX NO.
     return 1;
@@ -65,7 +65,7 @@ int pop(Stack *bucket)
         return -999;
     }
     temp = bucket->arr[bucket->tos];
-    bucket->tos--;
+    bucket->tos--;//MINUS BECAUSE ALL ELEMENTS ARE BELOW TOS
     return temp;
 }
 
@@ -88,7 +88,7 @@ int main()
     printf("\n ENTER THE SIZE OF BUCKET OR STACK : ");
     scanf("%d",&usize);
     
-    init(&bucket,usize);//WHY
+    init(&bucket,usize);
 
     push(&bucket,10);
     push(&bucket,20);
